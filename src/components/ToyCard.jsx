@@ -2,9 +2,11 @@ import React from "react";
 
 function ToyCard({ toy, toys, setToys }) {
   function handleDelete() {
+    // Send delete request to remove toy from backend
     fetch(`http://localhost:3001/toys/${toy.id}`, {
       method: "DELETE",
     }).then(() => {
+      // Remove toy from UI state after succesful deletion
       const updatedToys = toys.filter((t) => t.id !== toy.id);
       setToys(updatedToys);
     });
@@ -14,7 +16,7 @@ function ToyCard({ toy, toys, setToys }) {
     const updatedToy = {
       likes: toy.likes + 1,
     };
-
+    // fetch all toys from backend when app loads
     fetch(`http://localhost:3001/toys/${toy.id}`, {
       method: "PATCH",
       headers: {

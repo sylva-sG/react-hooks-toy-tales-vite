@@ -42,3 +42,29 @@ be stored.
   should be sent in the body of the PATCH request, as a object:
   `{ likes: 10 }`), to update the toy on the server. Clicking on the button
   should also increase the number of likes on the DOM.
+
+
+  # Toy Tales App
+
+## Description
+A React application that allows users to view, add, like, and delete toys using a REST API.
+
+## Features
+- View all toys
+- Add a new toy
+- Like a toy
+- Delete a toy
+
+## How it works
+- GET request loads toys on page load
+- POST request adds new toy
+- PATCH request updates likes
+- DELETE request removes toy
+
+## Screenshot
+![Toy Tales Screenshot](./screenshot.png)
+
+## Setup
+npm install
+npm run dev
+npm run server
