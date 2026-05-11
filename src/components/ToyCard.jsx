@@ -10,6 +10,28 @@ function ToyCard({ toy, toys, setToys }) {
     });
   }
 
+  function handleLike() {
+    const updatedToy = {
+      likes: toy.likes + 1,
+    };
+
+    fetch(`http://localhost:3001/toys/${toy.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedToy),
+    })
+      .then((res) => res.json())
+      .then((updatedToyFromServer) => {
+        const updatedToys = toys.map((t) =>
+          t.id === toy.id ? updatedToyFromServer : t
+        );
+
+        setToys(updatedToys);
+      });
+  }
+
   return (
     <div className="card" data-testid="toy-card">
       <h2>{toy.name}</h2>
@@ -20,9 +42,9 @@ function ToyCard({ toy, toys, setToys }) {
         className="toy-avatar"
       />
 
-      <p>{toy.likes} Likes</p>
+      <p>{toy.likes} Likes </p>
 
-      <button className="like-btn">
+      <button className="like-btn" onClick={handleLike}>
         Like {"<3"}
       </button>
 
